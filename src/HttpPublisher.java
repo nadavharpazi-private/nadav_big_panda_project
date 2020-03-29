@@ -12,7 +12,13 @@ class HttpPublisher {
 
     public HttpPublisher(int port, SystemCounters systemCounters) throws IOException {
         this.systemCounters = systemCounters;
-        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+        HttpServer server;
+        try {
+            server = HttpServer.create(new InetSocketAddress(port), 0);
+        } catch (IOException e) {
+            Logger.sendLog(Globals.error, ("http server failed to listen to port: " + port + " try another port.."));
+            throw e;
+        }
         server.createContext("/stats", new requestHandler());
         server.setExecutor(null); // creates a default executor
         Logger.sendLog(Globals.info, ("starting http server on port: " + port));
@@ -25,7 +31,7 @@ class HttpPublisher {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
             Logger.sendLog(Globals.verbose, ("http server: sending a response"));
-            String response = systemCounters.generateStatsReport().toString();
+            String response = systemCounters.getStatsReport();
             exchange.sendResponseHeaders(200, response.length());
             OutputStream os = exchange.getResponseBody();
             os.write(response.getBytes());
