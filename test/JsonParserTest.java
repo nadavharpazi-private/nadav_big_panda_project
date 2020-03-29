@@ -31,12 +31,10 @@ public class JsonParserTest {
     }
 
     @Test
-    public void parseInputJsonTest_invalid_strings() {
+    public void parseInputJsonTest_invalid_strings_should_throw_exception() {
         String [] invalidJsons = new String[]{invalidString1, invalidString2, invalidString3};
         for (String json : invalidJsons) {
-            Assertions.assertThrows(JsonParseException.class, () -> {
-                jsonParser.parseInputLine(json);
-            });
+            Assertions.assertThrows(JsonParseException.class, () -> jsonParser.parseInputLine(json));
         }
     }
 
