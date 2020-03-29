@@ -6,18 +6,30 @@ public class ProgramManager {
 
     public ProgramManager(int httpPort) throws IOException {
         GeneratorRunner generatorRunner = new GeneratorRunner();
-        Process process = generatorRunner.runGenerator();
-        JsonParser jsonParser = new JsonParser();
+        Process process;
+        try {
+            process = generatorRunner.runGenerator();
+        } catch (IOException e) {
+            Logger.sendLog(Globals.critical, "failed to run generator. existing.");
+            throw e;
+        }
         SystemCounters systemCounter = new SystemCounters();
-        HttpPublisher httpPublisher = new HttpPublisher(httpPort, systemCounter);
-        this.inputReader = new InputReader(process, jsonParser, systemCounter);
+        this.inputReader = new InputReader(process, systemCounter);
+        try {
+            new HttpPublisher(httpPort, systemCounter);
+        } catch (IOException e) {
+            Logger.sendLog(Globals.critical, "failed to run http server. existing.");
+            throw e;
+        }
     }
 
     private void readInput() {
         try {
-            inputReader.readInput();
-        } catch (IOException exp) {
-            Logger.sendLog(Globals.critical, "failed to read input from process, got IOException: ");
+            Thread readerThread = new Thread(inputReader);
+            Logger.sendLog(Globals.info, "running reader thread:");
+            readerThread.start();
+        } catch (Exception exp) {
+            Logger.sendLog(Globals.critical, "failed to read input from process, Exception: ");
             exp.printStackTrace();
         }
     }

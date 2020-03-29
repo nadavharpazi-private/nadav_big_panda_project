@@ -13,7 +13,7 @@ public class Globals
     static final int warn = 3;
     static final int error = 4;
     static final int critical = 5;
-    static final int defaultHttpPort = 8000;
+    static final int defaultHttpPort = 9000;
     static int activeLogLevel = debug;
 
     static final String eventTypeField = "event_type";

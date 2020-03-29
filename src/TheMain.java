@@ -35,9 +35,8 @@ public class TheMain {
         try {
             ProgramManager myProgramManager = new ProgramManager(httpPort);
             myProgramManager.startWorking();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logger.sendLog(Globals.critical,"failed to start program.");
         }
-        Logger.sendLog(Globals.info,"going down..");
     }
 }

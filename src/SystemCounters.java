@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class SystemCounters {
 
@@ -13,8 +11,14 @@ public class SystemCounters {
     protected long invalidJsonCounter = 0;
     protected long missingEventTypeCounter = 0;
     protected long missingDataCounter = 0;
+    private StringBuilder statsReport;
 
     public SystemCounters() {
+
+        // scheduling the timer instance to update stats report
+        Timer timer = new Timer();
+        TimerTask task = new ReportHelper();
+        timer.schedule(task, 1000, 3000);
     }
 
     public long getTotalLinesCounter() { return totalLinesCounter; }
@@ -68,27 +72,22 @@ public class SystemCounters {
         ++validJsonCounter;
     }
     public void incrementInvalidJson() { ++invalidJsonCounter;}
-
     public void incrementMissingEventType() {
         ++missingEventTypeCounter;
     }
-
     public void incrementMissingData() {
         ++missingDataCounter;
     }
-
     public long incrementErrorCounter() {
         return ++errorCounter;
     }
 
-    public StringBuilder generateStatsReport() {
-
-        StringBuilder stats = new StringBuilder("Current counters:\n");
-        stats.append("==================\n");
+    private void eventTypeReport(StringBuilder stats){
 
         long totalEventTypes = 0;
         Iterator<Map.Entry<String, Long>> iterator = eventTypeCount.entrySet().iterator();
         stats.append("\tEvent Type counters:\n");
+
         while (iterator.hasNext()){
             Map.Entry<String, Long> entry = iterator.next();
             long value = entry.getValue();
@@ -97,8 +96,9 @@ public class SystemCounters {
             stats.append("\n");
         }
         stats.append("\t\ttotal: ").append(totalEventTypes).append("\n\n");
-
-        iterator = wordCount.entrySet().iterator();
+    }
+    private void wordCountReport(StringBuilder stats) {
+        Iterator<Map.Entry<String, Long>> iterator = wordCount.entrySet().iterator();
         stats.append("\tword counters:\n");
         while (iterator.hasNext()){
             Map.Entry<String, Long> entry = iterator.next();
@@ -106,6 +106,15 @@ public class SystemCounters {
             stats.append("\n");
         }
         stats.append("\n");
+    }
+
+    private StringBuilder generateStatsReport() {
+
+        StringBuilder stats = new StringBuilder("Current counters:\n");
+        stats.append("==================\n");
+
+        eventTypeReport(stats);
+        wordCountReport(stats);
 
         stats.append("\tvalid json lines: ").append(getValidJsonCounter()).append("\n");
         stats.append("\tinvalid json lines: ").append(getInvalidJsonCounter()).append("\n");
@@ -113,4 +122,21 @@ public class SystemCounters {
 
         return stats;
     }
+
+    synchronized private void updateStatsReport(StringBuilder stats) {
+        this.statsReport = stats;
+    }
+
+    synchronized public String getStatsReport()  {
+        return this.statsReport.toString();
+    }
+
+    private class ReportHelper extends TimerTask {
+        @Override
+        public void run() {
+            StringBuilder stats = generateStatsReport();
+            updateStatsReport(stats);
+        }
+    }
+
 }

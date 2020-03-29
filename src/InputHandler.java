@@ -11,8 +11,8 @@ public class InputHandler {
     private final JsonParser jsonParser;
     private final SystemCounters systemCounter;
 
-    public InputHandler(JsonParser jsonParser, SystemCounters systemCounter) {
-        this.jsonParser = jsonParser;
+    public InputHandler(final SystemCounters systemCounter) {
+        this.jsonParser = new JsonParser();
         this.systemCounter = systemCounter;
     }
 
