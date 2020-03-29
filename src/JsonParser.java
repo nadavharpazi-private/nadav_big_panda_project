@@ -9,22 +9,7 @@ public class JsonParser {
 
     protected Map<String, String> parseInputLine(String inputLine) throws IOException {
         // convert JSON string to Map
-        String log = "handling current line from input: ";
-        Map<String, String> jsonMap;
-
-        try {
-
-            jsonMap = mapper.readValue(inputLine, Map.class);
-
-        } catch (JsonParseException exp) {
-            inputLine = Logger.checkBinaryContent(Globals.debug, inputLine);
-            Logger.sendLog(Globals.debug, log + " ==> got invalid json: " + inputLine);
-            return null;
-        }
-
-        log += " ==> got a valid json: ";
-        Logger.sendLog(Globals.debug, log + inputLine);
-        return jsonMap;
+        return mapper.readValue(inputLine, Map.class);
     }
 
     protected String parseEventType(Map<String, String> jsonMap) {
