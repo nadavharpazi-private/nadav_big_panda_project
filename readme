@@ -1,0 +1,37 @@
+steps to build and run program:
+===============================
+
+1. git clone:
+
+2. compile and build project (easiest is to use already existing IntelliJ project),
+assuming JDK 1.8 is installed
+
+3. running on windows:
+go to the root directory of the project and run:
+java.exe -Dfile.encoding=UTF-8 -classpath out\artifacts\big_panda_project_jar\big_panda_project.jar big_panda_project.main
+
+4. running on mac:
+go to the root directory of the project and run:
+java -Dfile.encoding=UTF-8 -classpath:out/artifacts/big_panda_project_jar/big_panda_project.jar big_panda_project.main
+
+5. optional parameters:
+debug_level <level> (possible values are: 0/1/2/3/4/5, default is 1, which is debug)
+port <port number> (default is 9000)
+
+6. running example:
+===================
+to run on windows, on port 8000, with verbose debug level, run:
+java.exe -Dfile.encoding=UTF-8 -classpath out\artifacts\big_panda_project_jar\big_panda_project.jar big_panda_project.main debug_level 0 port 8000
+
+7. To access the stats API, go to http://localhost:9000/stats
+(or http://localhost:8000/stats if port was changed as in the example above)
+
+8. final question:
+"3 things you would improve in your submission.":
+1. I would check if the current performance is good enough (product wise), and if needed scale up the solution with full multi-threading.
+2. I would complete timers, logging and debug.
+3. I would complete tests: unit tests, integration tests, etc. I have written only one test file as an example.
+
+
+
+

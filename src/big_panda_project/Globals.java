@@ -1,3 +1,7 @@
+package big_panda_project;
+
+// all global definitions
+
 public class Globals
 {
     enum OperatingSystem {
@@ -14,7 +18,16 @@ public class Globals
     static final int error = 4;
     static final int critical = 5;
     static final int defaultHttpPort = 9000;
-    static int activeLogLevel = debug;
+
+    static private int activeLogLevel = debug;
+
+    synchronized static void setLogLevel(final int activeLogLevel) {
+        Globals.activeLogLevel = activeLogLevel;
+    }
+
+    synchronized public static int getLogLevel() {
+        return activeLogLevel;
+    }
 
     static final String eventTypeField = "event_type";
     static final String dataField = "data";

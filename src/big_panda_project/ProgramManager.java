@@ -1,3 +1,8 @@
+package big_panda_project;
+
+// the manager of the program: start and runs all the core objects of the program
+// the input generator, the input reader thread, the http server and the System Counters
+
 import java.io.IOException;
 
 public class ProgramManager {

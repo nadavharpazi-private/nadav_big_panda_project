@@ -1,6 +1,8 @@
-import java.io.IOException;
+package big_panda_project;
 
-public class TheMain {
+// running the ProgramManager which is the main class of the project
+
+public class main {
 
     private static int logLevel = Globals.debug;
     private static int httpPort = Globals.defaultHttpPort;
@@ -27,9 +29,9 @@ public class TheMain {
 
     public static void main(String[] args) {
         parserArgs(args);
-        Globals.activeLogLevel = logLevel;
+        Globals.setLogLevel(logLevel);
         Logger.sendLog(Globals.info, "program started");
-        Logger.sendLog(Globals.info, ("log level: " + Globals.activeLogLevel));
+        Logger.sendLog(Globals.info, ("debug level: " + logLevel));
         Logger.sendLog(Globals.info, ("http port: " + httpPort));
 
         try {

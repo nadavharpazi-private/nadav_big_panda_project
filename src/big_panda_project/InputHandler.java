@@ -1,8 +1,11 @@
-import com.fasterxml.jackson.core.JsonParseException;
+package big_panda_project;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Timer;
+
+// InputHandler is responsible for all the parsing steps,
+// handling both valid results and invalid result (when there are parsing errors)
+// and in addition updating the relevant counters
 
 public class InputHandler {
 

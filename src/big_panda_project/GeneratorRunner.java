@@ -1,4 +1,8 @@
+package big_panda_project;
+
 import java.io.IOException;
+
+// this class is responsible to run the input generator, support windows/mac/linux
 
 public class GeneratorRunner {
     protected static final String localPath = ".";

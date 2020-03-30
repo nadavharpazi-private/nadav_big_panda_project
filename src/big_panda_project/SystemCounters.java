@@ -1,4 +1,10 @@
+package big_panda_project;
+
 import java.util.*;
+
+// holds and manages all the counters.
+// once per second a timer is called to update the stats report which is fetched by http server,
+// when stats request is asked by http client
 
 public class SystemCounters {
 
