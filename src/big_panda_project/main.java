@@ -29,7 +29,7 @@ public class main {
         parserArgs(args);
         Globals.activeLogLevel = logLevel;
         Logger.sendLog(Globals.info, "program started");
-        Logger.sendLog(Globals.info, ("log level: " + Globals.activeLogLevel));
+        Logger.sendLog(Globals.info, ("debug level: " + Globals.activeLogLevel));
         Logger.sendLog(Globals.info, ("http port: " + httpPort));
 
         try {

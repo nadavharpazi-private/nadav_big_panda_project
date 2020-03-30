@@ -1,0 +1,22 @@
+steps to build and run program:
+===============================
+
+1. git clone:
+m
+2. compile and build project (best with already existing IntelliJ), assuming JDK 1.8 is installed
+
+3. run on windows:
+===============
+java.exe -Dfile.encoding=UTF-8 -classpath out\artifacts\big_panda_project_jar\big_panda_project.jar big_panda_project.main
+
+4. run on mac:
+==============
+java -Dfile.encoding=UTF-8 -classpath out/artifacts/big_panda_project_jar/big_panda_project.jar big_panda_project.main
+
+optional parameters:
+====================
+debug_level <level> (possible values: 0/1/2/3/4/5, default is 1, which is debug)
+port <port number> (default is 9000)
+
+example: run on windows, port 8000, with verbose debug level:
+java.exe -Dfile.encoding=UTF-8 -classpath out\artifacts\big_panda_project_jar\big_panda_project.jar big_panda_project.main debug_level 0 port 8000
