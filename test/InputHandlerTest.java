@@ -2,17 +2,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InputReaderTest {
+class InputHandlerTest {
 
     @Test
-    void readInput() {
+    void handleLine() {
     }
 
     @Test
-    void handleCounters() {
+    void handleValidInput() {
     }
 
     @Test
-    void handleErrors() {
+    void handleInvalidInput() {
     }
 }

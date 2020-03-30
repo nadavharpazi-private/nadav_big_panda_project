@@ -16,7 +16,7 @@ public class InputHandler {
         this.systemCounter = systemCounter;
     }
 
-    protected void handleLine(String inputLine) {
+    void handleLine(final String inputLine) {
         systemCounter.incrementTotalLines();
         try {
 
@@ -28,7 +28,7 @@ public class InputHandler {
         }
     }
 
-    protected void handleValidInput(Map<String, String> jsonMap, String inputLine) {
+    void handleValidInput(final Map<String, String> jsonMap, final String inputLine) {
         Logger.sendLog(Globals.debug, logOfValid + inputLine);
 
         String eventType = jsonParser.parseEventType(jsonMap);
@@ -39,9 +39,14 @@ public class InputHandler {
         systemCounter.incrementValidJson();
     }
 
-    protected void handleInvalidInput(String inputLine) {
-        inputLine = Logger.checkBinaryContent(Globals.debug, inputLine);
-        Logger.sendLog(Globals.debug, logInvalid + inputLine);
+    void handleInvalidInput(final String inputLine) {
+        String cleaned = Logger.checkBinaryContent(Globals.debug, inputLine);
+        if(!cleaned.equals(inputLine)) {
+            cleaned = "contains non-printable characters.";
+        } else {
+            cleaned = inputLine;
+        }
+        Logger.sendLog(Globals.debug, logInvalid + cleaned);
         systemCounter.incrementInvalidJson();
     }
 }

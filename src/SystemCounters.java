@@ -21,19 +21,6 @@ public class SystemCounters {
         timer.schedule(task, 1000, 3000);
     }
 
-    public long getTotalLinesCounter() { return totalLinesCounter; }
-    public long getValidJsonCounter() { return validJsonCounter;}
-    public long getInvalidJsonCounter() { return invalidJsonCounter;}
-    public long getMissingEventTypeCounter() {
-        return missingEventTypeCounter;
-    }
-    public long getMissingDataCounter() {
-        return missingDataCounter;
-    }
-    public long getErrorCounter() {
-        return errorCounter;
-    }
-
     public long getEventCount(final String eventType) {
         if (eventTypeCount.containsKey(eventType)) {
             return eventTypeCount.get(eventType);
@@ -95,8 +82,10 @@ public class SystemCounters {
             stats.append("\t\t").append(entry.getKey()).append(": ").append(value);
             stats.append("\n");
         }
+
         stats.append("\t\ttotal: ").append(totalEventTypes).append("\n\n");
     }
+
     private void wordCountReport(StringBuilder stats) {
         Iterator<Map.Entry<String, Long>> iterator = wordCount.entrySet().iterator();
         stats.append("\tword counters:\n");
@@ -116,9 +105,9 @@ public class SystemCounters {
         eventTypeReport(stats);
         wordCountReport(stats);
 
-        stats.append("\tvalid json lines: ").append(getValidJsonCounter()).append("\n");
-        stats.append("\tinvalid json lines: ").append(getInvalidJsonCounter()).append("\n");
-        stats.append("\ttotal input lines: ").append(getTotalLinesCounter()).append("\n");
+        stats.append("\tvalid json lines: ").append(validJsonCounter).append("\n");
+        stats.append("\tinvalid json lines: ").append(invalidJsonCounter).append("\n");
+        stats.append("\ttotal input lines: ").append(totalLinesCounter).append("\n");
 
         return stats;
     }

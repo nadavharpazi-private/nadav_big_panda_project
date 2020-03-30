@@ -7,16 +7,16 @@ public class JsonParser {
 
     final ObjectMapper mapper = new ObjectMapper();
 
-    protected Map<String, String> parseInputLine(String inputLine) throws IOException {
+    Map<String, String> parseInputLine(String inputLine) throws IOException {
         // convert JSON string to Map
         return mapper.readValue(inputLine, Map.class);
     }
 
-    protected String parseEventType(Map<String, String> jsonMap) {
+    String parseEventType(Map<String, String> jsonMap) {
         return jsonMap.get(Globals.eventTypeField);
     }
 
-    protected String[] parseWords(Map<String, String> jsonMap)  {
+    String[] parseWords(Map<String, String> jsonMap)  {
         String words = jsonMap.get(Globals.dataField);
         if (words == null) {
             return null;

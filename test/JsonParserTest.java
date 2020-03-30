@@ -19,7 +19,7 @@ public class JsonParserTest {
 
     final JsonParser jsonParser = new JsonParser();
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseInputJsonTest() throws IOException {
         String [] validJsons = new String[]{
                 validInput, invalidMissingData, invalidMissingEvenType,
@@ -30,7 +30,7 @@ public class JsonParserTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseInputJsonTest_invalid_strings_should_throw_exception() {
         String [] invalidJsons = new String[]{invalidString1, invalidString2, invalidString3};
         for (String json : invalidJsons) {
@@ -38,35 +38,35 @@ public class JsonParserTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseEventTypeTest_valid_json() throws IOException {
         Map<String, String> jsonMap = jsonParser.parseInputLine(validInput);
         String eventType = jsonParser.parseEventType(jsonMap);
         assertEquals("baz", eventType);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseEventTypeTest_valid_json_missing_data() throws IOException {
         Map<String, String> jsonMap = jsonParser.parseInputLine(invalidMissingData);
         String eventType = jsonParser.parseEventType(jsonMap);
         assertEquals("baz", eventType);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseEventTypeTest_valid_json_missing_event_type() throws IOException {
         Map<String, String> jsonMap = jsonParser.parseInputLine(invalidMissingEvenType);
         String eventType = jsonParser.parseEventType(jsonMap);
         assertNull(eventType);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseEventTypeTest_valid_json_invalid_fields() throws IOException {
         Map<String, String> jsonMap = jsonParser.parseInputLine(validJsonInvalidFields);
         String eventType = jsonParser.parseEventType(jsonMap);
         assertNull(eventType);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseWordsTest_valid_data_1_word() throws IOException {
         Map<String, String> jsonMap = jsonParser.parseInputLine(validInput);
         String[] words = jsonParser.parseWords(jsonMap);
@@ -74,7 +74,7 @@ public class JsonParserTest {
         assertEquals("amet", words[0]);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseWordsTest_valid_data_with_many_words() throws IOException {
         Map<String, String> jsonMap = jsonParser.parseInputLine(validInputManyWords);
         String[] words = jsonParser.parseWords(jsonMap);
@@ -88,7 +88,7 @@ public class JsonParserTest {
         assertEquals("mnlkdf9", words[6]);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void parseWordsTest_invalid_data() throws IOException {
         String [] validJsonsMissingData = new String[]{
                 invalidMissingData, validJsonInvalidFields, justTestJson};
