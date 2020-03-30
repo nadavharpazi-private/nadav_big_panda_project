@@ -18,7 +18,7 @@ public class SystemCounters {
         // scheduling the timer instance to update stats report
         Timer timer = new Timer();
         TimerTask task = new ReportHelper();
-        timer.schedule(task, 1000, 3000);
+        timer.schedule(task, 1000, 1000);
     }
 
     public long getEventCount(final String eventType) {
@@ -55,6 +55,7 @@ public class SystemCounters {
     }
 
     public void incrementTotalLines() { ++totalLinesCounter; }
+    public long getTotalLinesCounter() {return totalLinesCounter;}
     public void incrementValidJson() {
         ++validJsonCounter;
     }

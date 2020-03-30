@@ -6,8 +6,9 @@ import java.util.Timer;
 
 public class InputHandler {
 
-    private final static String logOfValid = "handling input line: ==> a valid json: ";
-    private final static String logInvalid = "handling input line: ==> invalid json: ";
+    private final static String header = "handling input line: ";
+    private final static String logOfValid = " ==> a valid json: ";
+    private final static String logInvalid = " ==> invalid json: ";
 
     private final JsonParser jsonParser;
     private final SystemCounters systemCounter;
@@ -24,7 +25,6 @@ public class InputHandler {
 
         long start = System.nanoTime();
         try {
-
             jsonMap = jsonParser.parseInputLine(inputLine);
 
         } catch (IOException exp) {
@@ -33,23 +33,20 @@ public class InputHandler {
         } finally {
             long end = System.nanoTime();
             long microseconds = (end - start) / 1000;
-            handleValidOrInvalid(jsonMap, isValid, inputLine, microseconds);
+            inputLogger(isValid, inputLine, microseconds);
+            handleValidOrInvalid(jsonMap, isValid);
         }
     }
 
-    private void handleValidOrInvalid(final Map<String, String> jsonMap, final boolean isValid,
-                                      final String inputLine, final long microseconds){
-
-        inputLogger(false, inputLine, microseconds);
+    private void handleValidOrInvalid(final Map<String, String> jsonMap, final boolean isValid){
         if (isValid) {
-            handleValidInput(jsonMap, inputLine, microseconds);
+            handleValidInput(jsonMap);
             return;
         }
-        handleInvalidInput(inputLine, microseconds);
+        handleInvalidInput();
     }
 
-    private void handleValidInput(final Map<String, String> jsonMap,
-                                  final String inputLine, final long microseconds) {
+    private void handleValidInput(final Map<String, String> jsonMap) {
         String eventType = jsonParser.parseEventType(jsonMap);
         systemCounter.updateEventCount(eventType);
 
@@ -58,14 +55,16 @@ public class InputHandler {
         systemCounter.incrementValidJson();
     }
 
-    private void handleInvalidInput(final String inputLine, final long microseconds) {
+    private void handleInvalidInput() {
 //        String cleaned = Logger.checkBinaryContent(Globals.debug, inputLine);
         systemCounter.incrementInvalidJson();
     }
 
     private void inputLogger(final boolean isValid, final String inputLine, final long microseconds) {
-        String header = isValid ? logOfValid : logInvalid;
-        Logger.sendLog(Globals.debug, header + "(parse time: " + microseconds + " microseconds)" + inputLine);
+        long lineNumber = systemCounter.getTotalLinesCounter();
+        String log = header + "#" + lineNumber + (isValid ? logOfValid : logInvalid);
+
+        Logger.sendLog(Globals.debug, log + "(parse time: " + microseconds + " microseconds)" + inputLine);
     }
 
 }
