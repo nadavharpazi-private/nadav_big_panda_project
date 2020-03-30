@@ -11,7 +11,17 @@ public class Logger {
         if (logLevel < Globals.activeLogLevel) {
             return text;
         }
-        return cleanTextContent(text);
+
+        long start = System.nanoTime();
+
+        String clean = cleanTextContent(text);
+
+        long end = System.nanoTime();
+        long microseconds = (end - start) / 1000;
+        Logger.sendLog(Globals.verbose, "cleanTextContent took " +
+                microseconds + " microseconds");
+
+        return clean;
     }
 
     private static String cleanTextContent(String text) {

@@ -11,7 +11,7 @@ public class TheMain {
         }
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
-                case "log_level":
+                case "debug_level":
                     if (args.length > i + 1) {
                         String logLevelStr = args[i + 1];
                         logLevel = Integer.parseInt(logLevelStr);
