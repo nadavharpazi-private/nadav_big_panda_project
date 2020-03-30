@@ -8,12 +8,12 @@ https://github.com/nadavharpazi-private/nadav_big_panda_project.git
 assuming JDK 1.8 is installed
 
 3. running on windows:
-go to the root directory of the project and run:
+run either from intelliJ or go to the root directory of the project and run:
 java.exe -Dfile.encoding=UTF-8 -classpath out\artifacts\big_panda_project_jar\big_panda_project.jar big_panda_project.main
 
 4. running on mac:
-go to the root directory of the project and run:
-java -Dfile.encoding=UTF-8 -classpath:out/artifacts/big_panda_project_jar/big_panda_project.jar big_panda_project.main
+run either from intelliJ or go to the root directory of the project and run:
+java -Dfile.encoding=UTF-8 -classpath out/artifacts/big_panda_project_jar/big_panda_project.jar big_panda_project.main
 
 5. optional parameters:
 debug_level <level> (possible values are: 0/1/2/3/4/5, default is 1, which is debug)
