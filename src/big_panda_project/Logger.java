@@ -1,16 +1,18 @@
 package big_panda_project;
 
+// class for debug logging
+
 public class Logger {
 
     public static void sendLog(int logLevel, String logMessage) {
-        if (logLevel < Globals.activeLogLevel) {
+        if (logLevel < Globals.getLogLevel()) {
             return;
         }
         System.out.println(logMessage);
     }
 
     public static String checkBinaryContent(int logLevel, String text) {
-        if (logLevel < Globals.activeLogLevel) {
+        if (logLevel < Globals.getLogLevel()) {
             return text;
         }
 

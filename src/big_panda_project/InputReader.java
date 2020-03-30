@@ -2,6 +2,9 @@ package big_panda_project;
 
 import java.io.*;
 
+//  InputReader runs as a thread single that waits on the input of the generator.
+//  when a new line of input is reayd it calls the InputHandler class for handling
+
 public class InputReader implements Runnable {
 
     private final Process process;

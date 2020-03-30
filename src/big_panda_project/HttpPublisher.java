@@ -8,6 +8,8 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+// runs the http that publish all current statistics
+
 class HttpPublisher {
 
     private final SystemCounters systemCounters;

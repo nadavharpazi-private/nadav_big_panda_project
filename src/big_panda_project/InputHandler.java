@@ -3,6 +3,10 @@ package big_panda_project;
 import java.io.IOException;
 import java.util.Map;
 
+// InputHandler is responsible for all the parsing steps,
+// handling both valid results and invalid result (when there are parsing errors)
+// and in addition updating the relevant counters
+
 public class InputHandler {
 
     private final static String header = "handling input line: ";

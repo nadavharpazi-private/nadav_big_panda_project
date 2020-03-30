@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Map;
 
+// this class parses the json string using jackson-core package, into a Map of key-values from the json.
+// on parsing failure it throws an exception
+
 public class JsonParser {
 
     final ObjectMapper mapper = new ObjectMapper();
