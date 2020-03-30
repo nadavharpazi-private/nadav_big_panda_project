@@ -5,13 +5,11 @@ import java.nio.channels.SocketChannel;
 
 public class InputReader implements Runnable {
 
-    protected final Process process;
-    protected final SystemCounters systemCounter;
-    protected final InputHandler inputHandler;
+    private final Process process;
+    private final InputHandler inputHandler;
 
     public InputReader(final Process process, final SystemCounters systemCounter) {
         this.process = process;
-        this.systemCounter = systemCounter;
         this.inputHandler = new InputHandler(systemCounter);
     }
 
@@ -28,24 +26,29 @@ public class InputReader implements Runnable {
 
         try {
             while (!Thread.interrupted()) {
-                if (bufferedReader.ready()) {
-                    String inputLine = bufferedReader.readLine();
-                    if (inputLine == null) {
-                        closing = true;
-                        break;
-                    }
-                    inputHandler.handleLine(inputLine);
+                if (!bufferedReader.ready()) {
+                    continue;
                 }
+
+                String inputLine = bufferedReader.readLine();
+                if (inputLine == null) {
+                    closing = true;
+                    break;
+                }
+                inputHandler.handleLine(inputLine);
+
             }
         } catch (IOException e) {
+            Logger.sendLog(Globals.warn, "got IO Exception. closing");
             closing = true;
+
         } finally {
             if (closing) {
-                Logger.sendLog(Globals.info,"end of input. closing");
+                Logger.sendLog(Globals.info, "end of input. closing");
                 try {
                     bufferedReader.close();
                 } catch (IOException e) {
-                    Logger.sendLog(Globals.error,"got exception when closing the input.");
+                    Logger.sendLog(Globals.warn, "got IO exception when trying to close the input.");
                 }
             }
         }

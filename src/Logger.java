@@ -11,12 +11,7 @@ public class Logger {
         if (logLevel < Globals.activeLogLevel) {
             return text;
         }
-        String cleaned = cleanTextContent(text);
-        if(!cleaned.equals(text)) {
-            return "contains non-printable characters.";
-        }
-        return text;
-
+        return cleanTextContent(text);
     }
 
     private static String cleanTextContent(String text) {
