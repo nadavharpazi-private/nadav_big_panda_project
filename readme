@@ -2,6 +2,7 @@ steps to build and run program:
 ===============================
 
 1. git clone:
+https://github.com/nadavharpazi-private/nadav_big_panda_project.git
 
 2. compile and build project (easiest is to use already existing IntelliJ project),
 assuming JDK 1.8 is installed
