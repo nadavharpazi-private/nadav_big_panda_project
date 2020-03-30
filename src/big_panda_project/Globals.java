@@ -1,3 +1,5 @@
+package big_panda_project;
+
 public class Globals
 {
     enum OperatingSystem {

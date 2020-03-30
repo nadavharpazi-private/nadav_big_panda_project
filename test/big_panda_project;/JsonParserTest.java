@@ -1,5 +1,7 @@
+package big_panda_project;
+
+import big_panda_project.JsonParser;
 import com.fasterxml.jackson.core.JsonParseException;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import java.io.IOException;
 import java.util.Map;

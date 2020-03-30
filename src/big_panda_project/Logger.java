@@ -1,3 +1,5 @@
+package big_panda_project;
+
 public class Logger {
 
     public static void sendLog(int logLevel, String logMessage) {

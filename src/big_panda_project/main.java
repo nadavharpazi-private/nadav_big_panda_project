@@ -1,6 +1,6 @@
-import java.io.IOException;
+package big_panda_project;
 
-public class TheMain {
+public class main {
 
     private static int logLevel = Globals.debug;
     private static int httpPort = Globals.defaultHttpPort;

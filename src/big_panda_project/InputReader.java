@@ -1,7 +1,6 @@
+package big_panda_project;
+
 import java.io.*;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.SocketChannel;
 
 public class InputReader implements Runnable {
 
