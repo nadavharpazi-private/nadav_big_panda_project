@@ -33,6 +33,13 @@ java.exe -Dfile.encoding=UTF-8 -classpath out\artifacts\big_panda_project_jar\bi
 2. I would complete timers, logging and debug.
 3. I would complete tests: unit tests, integration tests, etc. I have written only one test file as an example.
 
+p.s.
+Of course there are many other possible improvements.
+I'm just listing some which are more product oriented, so these need to be discussed with relevant product people:
+-data persistence
+-real web API
+-consider separation to services (if needed for scaling) possibly with kubernetes
+
 
 
 
