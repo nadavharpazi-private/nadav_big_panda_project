@@ -23,7 +23,7 @@ port <port number> (default is 9000)
 ===================
 - to run on windows, on port 8000, with verbose debug level, run:
 java.exe -Dfile.encoding=UTF-8 -classpath out\artifacts\big_panda_project_jar\big_panda_project.jar big_panda_project.main debug_level 0 port 8000
-- to run on mac, with defaults run:
+- to run on mac (using default values), run:
 java -Dfile.encoding=UTF-8 -classpath out/artifacts/big_panda_project_jar/big_panda_project.jar big_panda_project.main
 
 7. To access the stats API, go to http://localhost:9000/stats
